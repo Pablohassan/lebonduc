@@ -1005,7 +1005,7 @@ function Contact() {
                 </div>
                 <div className="contact-details">
                   <strong>Téléphone</strong>
-                  <span>0547111033</span>
+                  <span>05 47 11 10 33</span>
                 </div>
               </div>
               <div className="contact-info-item">
