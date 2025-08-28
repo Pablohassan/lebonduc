@@ -16,7 +16,7 @@ const featuredDishes = [
     name: 'Foie Gras Maison',
     description: 'Foie gras d\'oie mi-cuit, chutney de figues et pain brioché toasté',
     price: '18 €',
-          image: '/assets/foigras.webp',
+    image: '/assets/foigras.webp',
     category: 'Entrée'
   },
   {
@@ -24,7 +24,7 @@ const featuredDishes = [
     name: 'Saint-Jacques Poêlées',
     description: 'Saint-Jacques fraîches poêlées, purée de céleri et émulsion safran',
     price: '25 €',
-          image: '/assets/rozoto.webp',
+    image: '/assets/rozoto.webp',
     category: 'Plat'
   },
   {
@@ -32,7 +32,7 @@ const featuredDishes = [
     name: 'Entrecôte Grillée',
     description: 'Entrecôte de bœuf charolais, gratin dauphinois et légumes de saison',
     price: '28 €',
-          image: '/assets/entrecote.webp',
+    image: '/assets/entrecote.webp',
     category: 'Plat'
   },
   {
@@ -40,7 +40,7 @@ const featuredDishes = [
     name: 'Tarte Tatin',
     description: 'Tarte tatin traditionnelle, crème fraîche d\'Isigny et glace vanille',
     price: '8 €',
-          image: '/assets/tartetatin.png',
+    image: '/assets/tartetatin.png',
     category: 'Dessert'
   }
 ]
@@ -349,8 +349,8 @@ function About() {
           >
             <p className="text-lg text-gray-700 leading-relaxed">
               Situé à Les Billaux en Gironde, Le Bon Duc est un hôtel‑restaurant
-            chaleureux qui marie tradition et modernité. Au restaurant, notre
-            chef concocte des plats savoureux avec des produits locaux et de
+              chaleureux qui marie tradition et modernité. Au restaurant, notre
+              chef concocte des plats savoureux avec des produits locaux et de
               saison, pour satisfaire toutes les envies : viandes, poissons,
               options végétariennes et bien plus encore.
             </p>
@@ -450,7 +450,7 @@ function FeaturedDishes() {
             Voir la carte complète
           </motion.a>
         </motion.div>
-            </div>
+      </div>
     </section>
   )
 }
@@ -519,7 +519,7 @@ function Bar() {
       name: "Mojito",
       description: "Cassandre, citron vert, menthe, rhum, eau gazeuse",
       price: "9 €",
-              image: "/assets/mojito.png",
+      image: "/assets/mojito.png",
       category: "alcoholic"
     },
     {
@@ -527,7 +527,7 @@ function Bar() {
       name: "Aperol Spritz",
       description: "Apérol, proseco, eau gazeuse",
       price: "9 €",
-              image: "/assets/aperolspritz.png",
+      image: "/assets/aperolspritz.png",
       category: "alcoholic"
     },
     {
@@ -535,7 +535,7 @@ function Bar() {
       name: "Black Mojito",
       description: "Cassandre, citron vert, menthe, vodka black, jus de fraise, eau gazeuse",
       price: "9 €",
-              image: "/assets/black-cocktail.webp",
+      image: "/assets/black-cocktail.webp",
       category: "alcoholic"
     },
     {
@@ -543,7 +543,7 @@ function Bar() {
       name: "Pornstar Martini",
       description: "Vodka, sirop de vanille, fruit de la passion, proseco",
       price: "9 €",
-              image: "/assets/pornstarmartini.png",
+      image: "/assets/pornstarmartini.png",
       category: "alcoholic"
     },
     {
@@ -559,14 +559,14 @@ function Bar() {
       name: "L'Exotique",
       description: "Jus d'ananas, jus de passion, sirop de vanille",
       price: "6 €",
-              image: "/assets/exotique.png",
+      image: "/assets/exotique.png",
       category: "non-alcoholic"
     }
   ]
 
   return (
     <section className="bar-section text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-4 lg:px-6">
         <motion.div
           className="text-center mb-16"
           variants={fadeInUp}
@@ -582,7 +582,7 @@ function Bar() {
         </motion.div>
 
         <motion.div
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4"
           variants={staggerContainer}
           initial="initial"
           whileInView="animate"
@@ -1012,14 +1012,14 @@ function Contact() {
                 <div className="contact-icon">
                   ✉️
                 </div>
-        <div className="contact-details">
+                <div className="contact-details">
                   <strong>E‑mail</strong>
-          <span>
+                  <span>
                     <a href="mailto:lebonduc33500@gmail.com" className="text-amber-400 hover:text-amber-300">
                       lebonduc33500@gmail.com
                     </a>
-          </span>
-        </div>
+                  </span>
+                </div>
               </div>
             </div>
           </motion.div>
@@ -1033,7 +1033,7 @@ function Contact() {
             <div className="opening-hours-card">
               <h3 className="text-2xl font-semibold mb-8 text-center">Horaires d'ouverture</h3>
               <div className="space-y-4">
-              {openingHours.map((item, idx) => (
+                {openingHours.map((item, idx) => (
                   <motion.div
                     key={idx}
                     className="opening-hours-item"
@@ -1047,7 +1047,7 @@ function Contact() {
                   </motion.div>
                 ))}
               </div>
-          </div>
+            </div>
           </motion.div>
         </div>
 
@@ -1059,15 +1059,15 @@ function Contact() {
           viewport={{ once: true }}
         >
           <div className="map-container">
-          <iframe
+            <iframe
               title="Le Bon Duc sur Google Maps"
-            src="https://maps.google.com/maps?q=16%20Route%20de%20Paris%2033500%20Les%20Billaux&t=&z=15&ie=UTF8&iwloc=&output=embed"
-            width="100%"
-            height="100%"
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-          ></iframe>
-        </div>
+              src="https://maps.google.com/maps?q=16%20Route%20de%20Paris%2033500%20Les%20Billaux&t=&z=15&ie=UTF8&iwloc=&output=embed"
+              width="100%"
+              height="100%"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
         </motion.div>
       </div>
     </section>
