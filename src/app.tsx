@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { motion, Variants, MotionProps, AnimatePresence } from 'framer-motion'
 
 // Types pour les composants motion selon la documentation officielle
@@ -85,6 +85,15 @@ const scaleIn: Variants = {
 }
 
 function Header({ onOpenMenu }: { onOpenMenu?: () => void }) {
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1024)
+
+  React.useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth)
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
   return (
     <MotionHeader
       className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200"
@@ -93,28 +102,68 @@ function Header({ onOpenMenu }: { onOpenMenu?: () => void }) {
       transition={{ duration: 0.6 }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <nav className="flex justify-between items-center py-4">
-          <MotionA
-            href="#"
-            className="text-2xl font-bold text-gray-900"
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 400, damping: 10 }}
-          >
-            Le Bon Duc
-          </MotionA>
-          <ul className="hidden md:flex space-x-8">
-            <li><a href="#about" className="text-gray-700 hover:text-amber-600 transition-colors">À propos</a></li>
-            <li>
-              <button
-                onClick={onOpenMenu}
-                className="text-gray-700 hover:text-amber-600 transition-colors cursor-pointer bg-transparent border-none"
-              >
-                La Carte
-              </button>
-            </li>
-            <li><a href="#contact" className="text-gray-700 hover:text-amber-600 transition-colors">Contact</a></li>
-          </ul>
-        </nav>
+        <div className="flex items-center" style={{ padding: '16px 0', height: '64px' }}>
+          {/* Logo - visible à partir de sm */}
+          <div style={{
+            flex: '0 0 auto',
+            width: '150px',
+            display: windowWidth < 640 ? 'none' : 'block'
+          }}>
+            <span style={{ fontSize: '1.25rem', fontWeight: 'bold', color: '#ffffff' }}>
+              Le Bon Duc
+            </span>
+          </div>
+
+          {/* Spacer */}
+          <div style={{ flex: '1' }}></div>
+
+          {/* Téléphone centré */}
+          <div style={{ flex: '0 0 auto' }}>
+            <a href="tel:+33547111033" style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#d97706', textDecoration: 'none', fontWeight: '600', fontSize: '18px' }}>
+              <span>📞</span>
+              <span>05 47 11 10 33</span>
+            </a>
+          </div>
+
+          {/* Spacer + Menu/Burger */}
+          <div style={{ flex: '1', display: 'flex', justifyContent: 'flex-end' }}>
+            {/* Navigation desktop */}
+            <div className="hidden lg:flex space-x-6">
+              <a href="#about" className="text-gray-700 hover:text-amber-600">À propos</a>
+              <button onClick={onOpenMenu} className="text-gray-700 hover:text-amber-600 bg-transparent border-none cursor-pointer">La Carte</button>
+              <a href="#contact" className="text-gray-700 hover:text-amber-600">Contact</a>
+            </div>
+            {/* Burger mobile */}
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="lg:hidden p-2 border border-gray-300 rounded text-gray-700"
+            >
+              {isMenuOpen ? '✕' : '☰'}
+            </button>
+          </div>
+        </div>
+
+        {/* Menu mobile simple */}
+        {isMenuOpen && (
+          <div className="lg:hidden border-t border-gray-200 bg-white py-4">
+            <ul className="space-y-2">
+              <li><a href="#about" className="block px-4 py-2 text-gray-700 hover:text-amber-600 hover:bg-gray-50" onClick={() => setIsMenuOpen(false)}>À propos</a></li>
+              <li>
+                <button
+                  onClick={() => {
+                    onOpenMenu?.()
+                    setIsMenuOpen(false)
+                  }}
+                  className="w-full text-left px-4 py-2 text-gray-700 hover:text-amber-600 hover:bg-gray-50 cursor-pointer bg-transparent border-none"
+                >
+                  La Carte
+                </button>
+              </li>
+              <li><a href="#contact" className="block px-4 py-2 text-gray-700 hover:text-amber-600 hover:bg-gray-50" onClick={() => setIsMenuOpen(false)}>Contact</a></li>
+
+            </ul>
+          </div>
+        )}
       </div>
     </MotionHeader>
   )
@@ -1005,7 +1054,11 @@ function Contact() {
                 </div>
                 <div className="contact-details">
                   <strong>Téléphone</strong>
-                  <span>05 47 11 10 33</span>
+                  <span>
+                    <a href="tel:+33547111033" className="text-amber-400 hover:text-amber-300 transition-colors">
+                      05 47 11 10 33
+                    </a>
+                  </span>
                 </div>
               </div>
               <div className="contact-info-item">
